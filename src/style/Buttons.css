@@ -1,0 +1,22 @@
+.col{
+    background: #eee;
+    color:black;
+    border: 1px #921029 solid;
+    border-left: none; border-bottom: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 5rem; height: 4rem;
+    display:flex;
+    align-items: center;
+    font-size: 1.4rem;
+    justify-content: center;
+}
+
+.zero{
+    width: 10rem;
+}
+
+.operator{
+    background: #F2274F;
+    font-size: 2rem;
+}

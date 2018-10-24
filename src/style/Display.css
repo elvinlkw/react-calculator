@@ -1,0 +1,15 @@
+#display-wrapper{
+    width: 20rem;
+    height: 5rem;
+    border-right: 1px #921029 solid;
+    background: black;
+    position: relative;
+}
+
+#display{
+    color:white;
+    font-size: 2rem;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}

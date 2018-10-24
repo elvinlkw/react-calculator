@@ -1,0 +1,12 @@
+.container{
+    width: 20rem;
+    margin: 0 auto;
+    height: auto;
+    border: 1px #921029 solid;
+    border-right: none;
+}
+
+.row{
+    display:flex;
+    width: 20rem;
+}
