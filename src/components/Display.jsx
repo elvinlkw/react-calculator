@@ -3,10 +3,11 @@ import './../style/Display.css';
 
 class Display extends Component {
     render() { 
-        var {input} = this.props
+        var {input, output} = this.props
         return (
             <div id="display-wrapper">
-                <span id="display">{input}</span>
+                <span id="input">{input}</span>
+                <span id="display">{output}</span>
             </div>
         );
     }

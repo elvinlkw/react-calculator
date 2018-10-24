@@ -8,20 +8,41 @@ class App extends Component {
     constructor(props){
         super(props);  
         this.state={
-            input: ''
+            input: '',
+            output: 0,
+            storage: 0
         }
         this.addToDisplay = this.addToDisplay.bind(this);
         this.handleEqual = this.handleEqual.bind(this);
+        this.handleCharacter = this.handleCharacter.bind(this);
         this.clearAll = this.clearAll.bind(this);
+    }
+    componentDidUpdate(){
+        
     }
     clearAll(){
         this.setState({
-            input: ''
+            input: '',
+            output: 0
         });
+    }
+    handleCharacter(val){
+        if(val === '%'){
+            this.setState({
+                output: math.eval(this.state.input) / 100,
+                storage: math.eval(this.state.input) / 100
+            });
+        }else{
+            this.setState({
+                output: '-' + math.eval(this.state.input),
+                storage: '-' + math.eval(this.state.input)
+            });
+        }
     }
     handleEqual(){
         this.setState({
-            input: math.eval(this.state.input)
+            output: math.eval(this.state.input),
+            storage: math.eval(this.state.input)
         })
     }
     addToDisplay(val){
@@ -32,21 +53,30 @@ class App extends Component {
         } else if(val === "−"){
             val = "-"
         }
-        this.setState({
-            input: this.state.input + val
-        });
+
+        if(this.state.storage === 0){
+            this.setState({
+                input: this.state.input + val
+            });
+        }else{
+            this.setState({
+                input: this.state.storage + val,
+                storage: 0
+            })
+        }
+        
     }
     render() { 
-        var {input} = this.state;
+        var {input, output} = this.state;
         return (
             <div className="container">
                 <div className="row">
-                    <Display input={input}/>
+                    <Display input={input} output={output}/>
                 </div>
-                <div className="row" id="dummy">
+                <div className="row">
                     <Buttons onClick={this.clearAll}>AC</Buttons>
-                    <Buttons onClick={this.addToDisplay}>&plusmn;</Buttons>
-                    <Buttons onClick={this.addToDisplay}>%</Buttons>
+                    <Buttons onClick={this.handleCharacter}>&plusmn;</Buttons>
+                    <Buttons onClick={this.handleCharacter}>%</Buttons>
                     <Buttons onClick={this.addToDisplay}>&divide;</Buttons>
                 </div>
                 <div className="row">
