@@ -1,9 +1,18 @@
+#page-title{
+    text-align: center;
+    font-weight: bold;
+}
+
 .container{
+    position: relative;
     width: 20rem;
     margin: 0 auto;
     height: auto;
     border: 1px #921029 solid;
     border-right: none;
+    display:flex;
+    flex-directioN: column;
+    justify-content: center;
 }
 
 .row{

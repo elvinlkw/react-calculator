@@ -18,12 +18,13 @@ class App extends Component {
         this.clearAll = this.clearAll.bind(this);
     }
     componentDidUpdate(){
-        
+        console.log(this.state);
     }
     clearAll(){
         this.setState({
             input: '',
-            output: 0
+            output: 0,
+            storage: 0
         });
     }
     handleCharacter(val){
@@ -33,17 +34,38 @@ class App extends Component {
                 storage: math.eval(this.state.input) / 100
             });
         }else{
-            this.setState({
-                output: '-' + math.eval(this.state.input),
-                storage: '-' + math.eval(this.state.input)
-            });
+            // Handler for pressing '+/-' key 
+            if(this.state.storage[0] === '-'){
+                this.setState({
+                    input: this.state.storage.substr(1),
+                    storage: this.state.storage.substr(1)
+                })
+            } else if(this.state.storage === 0){
+                this.setState({
+                    input: '-' + this.state.input,
+                    storage: '-' + this.state.input
+                });
+            } else{
+                this.setState({
+                    input: '-' + this.state.storage,
+                    storage: '-' + this.state.storage
+                });
+            }
         }
     }
     handleEqual(){
-        this.setState({
-            output: math.eval(this.state.input),
-            storage: math.eval(this.state.input)
-        })
+        try{
+            this.setState({
+                output: math.eval(this.state.input),
+                storage: math.eval(this.state.input).toString()
+            });
+        } catch(e){
+            alert('Invalid Operation');
+            this.setState({
+                input: this.state.output
+            });
+        }
+        
     }
     addToDisplay(val){
         if(val === "×"){
@@ -53,7 +75,6 @@ class App extends Component {
         } else if(val === "−"){
             val = "-"
         }
-
         if(this.state.storage === 0){
             this.setState({
                 input: this.state.input + val
@@ -64,11 +85,14 @@ class App extends Component {
                 storage: 0
             })
         }
-        
     }
     render() { 
         var {input, output} = this.state;
         return (
+            <div>
+            <div id="page-title">
+                <h1>Calculator App</h1>
+            </div>
             <div className="container">
                 <div className="row">
                     <Display input={input} output={output}/>
@@ -102,7 +126,7 @@ class App extends Component {
                     <Buttons onClick={this.addToDisplay}>.</Buttons>
                     <Buttons onClick={this.handleEqual}>=</Buttons>
                 </div>
-                
+                </div>
             </div>
         );
     }
