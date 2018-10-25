@@ -16,10 +16,27 @@ class App extends Component {
         this.handleEqual = this.handleEqual.bind(this);
         this.handleCharacter = this.handleCharacter.bind(this);
         this.clearAll = this.clearAll.bind(this);
-        this.handleKeyboardInput = this.handleKeyboardInput.bind(this);
+        this.listenKeyboardEvent = this.listenKeyboardEvent.bind(this);
     }
     componentDidUpdate(){
-        console.log(this.state)
+        console.log(this.state);
+    }
+    componentDidMount(){
+        document.addEventListener("keydown", this.listenKeyboardEvent , false);
+    }
+    listenKeyboardEvent(event){
+        var keyPress = event.key;
+        var operator = ['*', '/', '+', '-', '.']
+        console.log(keyPress);
+        if(!isNaN(keyPress) || operator.includes(keyPress)){
+            this.addToDisplay(keyPress);
+        } else if (keyPress === 'Backspace'){
+            this.setState({
+                input: this.state.input.substr(0, this.state.input.length-1)
+            });
+        } else if (keyPress === 'Enter'){
+            this.handleEqual();
+        }
     }
     clearAll(){
         // Reset all states when 'AC' key is pressed
@@ -62,13 +79,7 @@ class App extends Component {
             }
         }
     }
-    handleEqual(){
-        var output = this.state.output;
-        if(output < 1 && output.toString().length > 7){
-            output = output.toFixed(7);
-        } else if(output > 1 && output.toString().length > 7){
-            output = output.toPrecision(4);
-        }
+    handleEqual(){        
         try{
             this.setState({
                 output: math.eval(this.state.input),
@@ -108,11 +119,6 @@ class App extends Component {
             })
         }
     }
-    handleKeyboardInput(kbInput){
-        this.setState({
-            input: kbInput
-        });
-    }
     render() { 
         var {input, output} = this.state;
         return (
@@ -122,7 +128,7 @@ class App extends Component {
                 </div>
                 <div className="container">
                     <div className="row">
-                        <Display input={input} output={output} onInput={this.handleKeyboardInput} handleEqual={this.handleEqual}/>
+                        <Display input={input} output={output}/>
                     </div>
                     <div className="row">
                         <Buttons onClick={this.clearAll}>AC</Buttons>

@@ -2,29 +2,16 @@ import React, { Component } from 'react';
 import './../style/Display.css';
 
 class Display extends Component {
-    componentDidMount(){
-        this.refs.inputField.focus();
-    }
-    componentDidUpdate(){
-        this.refs.inputField.focus();
-    }
     render() { 
         var {input, output} = this.props
-
-        var handleChange = (event) => {
-            this.props.onInput(event.target.value);
+        if(output < 1 && output.toString().length > 7){
+            output = output.toFixed(7);
+        } else if(output > 1 && output.toString().length > 7){
+            output = output.toPrecision(4);
         }
-
-        var handleEnter = (event) => {
-            if(event.key === 'Enter'){
-                this.props.handleEqual();
-                
-            }
-        }
-
         return (
             <div id="display-wrapper">
-                <input ref="inputField" id="input" value={input} onChange={(e)=>handleChange(e)} onKeyPress={(e)=>handleEnter(e)}/>
+                <span id="input">{input}</span>
                 <span id="display">{output}</span>
             </div>
         );
