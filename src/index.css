@@ -1,12 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu');
 
-
 body {
+  overflow:hidden;
   margin: 0;
   padding: 0;
   height: 100vh;
-  display:flex;
-  flex-direction: column;
-  align-content: center;
   font-family: 'Ubuntu', Arial, Helvetica, sans-serif
 }

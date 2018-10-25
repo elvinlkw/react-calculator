@@ -16,7 +16,14 @@
 
 #input{
     color:white;
+    background: black;
+    border: black;
+    text-align: right;
     position: absolute;
     right: 0;
     font-size: 1.2rem;
+}
+
+#input:focus{
+    outline: none;
 }

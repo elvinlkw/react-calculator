@@ -1,18 +1,25 @@
+h1{
+    padding: 0;
+    margin: 0;
+}
+
+#main{
+    height: 100vh;
+    position: relative;
+}
+
 #page-title{
     text-align: center;
     font-weight: bold;
+    padding: 2rem 0;
 }
 
 .container{
-    position: relative;
     width: 20rem;
     margin: 0 auto;
     height: auto;
     border: 1px #921029 solid;
     border-right: none;
-    display:flex;
-    flex-directioN: column;
-    justify-content: center;
 }
 
 .row{

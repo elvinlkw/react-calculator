@@ -18,5 +18,11 @@
 
 .operator{
     background: #F2274F;
+    color:white;
     font-size: 2rem;
+}
+
+.special{
+    background: #444;
+    color:white;
 }
