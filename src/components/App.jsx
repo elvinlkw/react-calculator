@@ -18,9 +18,6 @@ class App extends Component {
         this.clearAll = this.clearAll.bind(this);
         this.listenKeyboardEvent = this.listenKeyboardEvent.bind(this);
     }
-    componentDidUpdate(){
-        console.log(this.state);
-    }
     componentDidMount(){
         document.addEventListener("keydown", this.listenKeyboardEvent , false);
     }
