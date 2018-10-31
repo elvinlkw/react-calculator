@@ -2,6 +2,9 @@
 ### Quick Introduction
 
 A react calculator application implemented using Facebook's `create-react-app` template and React JS.
+The application accepts both keyboard input as well as clicking on the buttons.
+The code is currently built at the following URL:
+`https://elvinlkw.github.io/react-calculator/`
 
 ### Installation
 
